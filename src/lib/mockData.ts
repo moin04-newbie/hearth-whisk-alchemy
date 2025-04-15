@@ -1,4 +1,3 @@
-
 import { ChefHat, Award, Heart } from "lucide-react";
 
 export interface Recipe {
@@ -40,6 +39,7 @@ export interface Chef {
     following: number;
   };
   recipes: string[];
+  specialties: string[];
 }
 
 export const getBadgeIcon = (badge: string) => {
@@ -70,7 +70,8 @@ export const mockChefs: Chef[] = [
       followers: 1240,
       following: 87
     },
-    recipes: ["recipe1", "recipe3", "recipe5"]
+    recipes: ["recipe1", "recipe3", "recipe5"],
+    specialties: ["Pasta", "Sushi", "Swedish Desserts", "Vegan Options"]
   },
   {
     id: "chef2",
@@ -86,7 +87,8 @@ export const mockChefs: Chef[] = [
       followers: 956,
       following: 124
     },
-    recipes: ["recipe2", "recipe4"]
+    recipes: ["recipe2", "recipe4"],
+    specialties: ["Pastries", "Danish Desserts", "French Cuisine", "Bread"]
   }
 ];
 
