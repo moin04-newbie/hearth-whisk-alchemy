@@ -1,9 +1,18 @@
-
-import { useState } from 'react';
+import React, { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
-import { Search, Menu, X, ChefHat, Home, BookOpen, Users, Calendar } from 'lucide-react';
+import { 
+  Search, 
+  Menu, 
+  X, 
+  ChefHat, 
+  Home, 
+  BookOpen, 
+  Users, 
+  Calendar,
+  User
+} from 'lucide-react';
 import { useIsMobile } from '@/hooks/use-mobile';
 
 const Navbar = () => {
@@ -60,10 +69,18 @@ const Navbar = () => {
                 <Button className="bg-purple-500 text-white hover:bg-purple-600">
                   Sign In
                 </Button>
-                <Avatar className="h-8 w-8 cursor-pointer">
-                  <AvatarImage src="https://api.dicebear.com/7.x/avataaars/svg?seed=user" />
-                  <AvatarFallback>U</AvatarFallback>
-                </Avatar>
+                <Link to="/profile">
+                  <Avatar className="h-8 w-8 cursor-pointer">
+                    <AvatarImage src="https://api.dicebear.com/7.x/avataaars/svg?seed=user" />
+                    <AvatarFallback>U</AvatarFallback>
+                  </Avatar>
+                </Link>
+                <Link to="/profile">
+                  <Button variant="outline" className="flex items-center">
+                    <User className="h-4 w-4 mr-2" />
+                    Profile
+                  </Button>
+                </Link>
               </div>
             )}
             
