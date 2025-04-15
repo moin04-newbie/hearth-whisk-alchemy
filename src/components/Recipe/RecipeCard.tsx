@@ -1,9 +1,9 @@
-
 import { Link } from 'react-router-dom';
 import { Clock, Utensils, ChefHat, Heart } from 'lucide-react';
 import { Badge } from '@/components/ui/badge';
 import { Card, CardContent } from '@/components/ui/card';
 import { HoverCard, HoverCardTrigger, HoverCardContent } from '@/components/ui/hover-card';
+import { AspectRatio } from '@/components/ui/aspect-ratio';
 import type { Recipe } from '@/lib/mockData';
 import { useState } from 'react';
 
@@ -21,6 +21,15 @@ const fallbackImages = [
   "https://images.unsplash.com/photo-1512621776951-a57141f2eefd?auto=format&fit=crop&w=600&q=80",
 ];
 
+// Collection of decorative overlay patterns
+const overlayPatterns = [
+  "https://www.transparenttextures.com/patterns/cubes.png",
+  "https://www.transparenttextures.com/patterns/food.png",
+  "https://www.transparenttextures.com/patterns/cream-paper.png",
+  "https://www.transparenttextures.com/patterns/restaurant.png",
+  "https://www.transparenttextures.com/patterns/rice-paper-2.png",
+];
+
 const RecipeCard = ({ recipe, featured = false }: RecipeCardProps) => {
   const [isHovered, setIsHovered] = useState(false);
   
@@ -34,6 +43,9 @@ const RecipeCard = ({ recipe, featured = false }: RecipeCardProps) => {
   // Convert id to number before using modulo operation, ensuring it's a valid number
   const recipeIndex = typeof recipe.id === 'string' ? parseInt(recipe.id.replace(/\D/g, '')) % fallbackImages.length : 0;
   const recipeImage = recipe.image || fallbackImages[recipeIndex];
+  
+  // Get a pattern for the overlay based on recipe ID
+  const overlayPattern = overlayPatterns[recipeIndex];
 
   // Generate a badge style and text based on recipe properties
   const getBadgeDetails = () => {
@@ -68,7 +80,13 @@ const RecipeCard = ({ recipe, featured = false }: RecipeCardProps) => {
               featured ? 'md:h-full md:aspect-auto' : 'aspect-[4/3]'
             }`}
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent opacity-80"></div>
+          <div 
+            className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent opacity-80"
+            style={{ 
+              backgroundImage: `url(${overlayPattern}), linear-gradient(to top, rgba(0,0,0,0.7), transparent)`,
+              backgroundBlendMode: 'overlay'
+            }}
+          ></div>
           
           <div className="absolute top-2 right-2 flex gap-2">
             {/* Dynamic badge based on recipe properties */}
@@ -100,6 +118,7 @@ const RecipeCard = ({ recipe, featured = false }: RecipeCardProps) => {
             </Badge>
           </div>
         </div>
+        
         <CardContent 
           className={`p-4 ${featured ? 'md:w-3/5' : ''} flex flex-col h-full`}
         >
