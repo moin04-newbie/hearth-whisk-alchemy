@@ -12,6 +12,7 @@ import Recipes from "./pages/Recipes";
 import Chefs from "./pages/Chefs";
 import MealPlanning from "./pages/MealPlanning";
 
+// Create a single queryClient instance to be used throughout the app
 const queryClient = new QueryClient();
 
 const App = () => (

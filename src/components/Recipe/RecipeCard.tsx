@@ -11,6 +11,12 @@ interface RecipeCardProps {
 }
 
 const RecipeCard = ({ recipe, featured = false }: RecipeCardProps) => {
+  // Ensure recipe.id exists before trying to create a link
+  if (!recipe || !recipe.id) {
+    console.error('Recipe or recipe.id is undefined:', recipe);
+    return null; // Don't render anything if there's no valid recipe
+  }
+
   return (
     <Link to={`/recipe/${recipe.id}`}>
       <Card className={`recipe-card h-full ${featured ? 'md:flex' : ''}`}>
@@ -20,7 +26,7 @@ const RecipeCard = ({ recipe, featured = false }: RecipeCardProps) => {
             alt={recipe.title} 
             className={`w-full aspect-[4/3] object-cover ${featured ? 'md:h-full md:aspect-auto' : ''}`}
           />
-          {recipe.creator.badges.length > 0 && (
+          {recipe.creator && recipe.creator.badges && recipe.creator.badges.length > 0 && (
             <Badge className="absolute top-2 right-2 bg-sage text-white">
               {recipe.creator.badges[0]}
             </Badge>
@@ -41,7 +47,7 @@ const RecipeCard = ({ recipe, featured = false }: RecipeCardProps) => {
           </div>
           
           <div className="flex flex-wrap gap-1 mb-3">
-            {recipe.tags.slice(0, 3).map((tag, index) => (
+            {recipe.tags && recipe.tags.slice(0, 3).map((tag, index) => (
               <Badge 
                 key={index} 
                 variant="outline"
@@ -53,14 +59,16 @@ const RecipeCard = ({ recipe, featured = false }: RecipeCardProps) => {
           </div>
           
           <div className="mt-auto flex items-center pt-2 border-t border-gray-100">
-            <div className="flex items-center">
-              <img 
-                src={recipe.creator.avatar} 
-                alt={recipe.creator.name}
-                className="h-6 w-6 rounded-full mr-2"
-              />
-              <span className="text-xs">{recipe.creator.name}</span>
-            </div>
+            {recipe.creator && (
+              <div className="flex items-center">
+                <img 
+                  src={recipe.creator.avatar} 
+                  alt={recipe.creator.name}
+                  className="h-6 w-6 rounded-full mr-2"
+                />
+                <span className="text-xs">{recipe.creator.name}</span>
+              </div>
+            )}
             
             <div className="ml-auto flex items-center text-xs text-gray-500">
               <ChefHat className="h-3 w-3 mr-1" />
