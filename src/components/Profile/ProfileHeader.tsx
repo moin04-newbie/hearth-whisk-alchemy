@@ -1,8 +1,6 @@
-
 import { Link } from 'react-router-dom';
 import { ArrowLeft, Settings, Edit, Camera } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-
 interface ProfileHeaderProps {
   userData: {
     name: string;
@@ -19,17 +17,15 @@ interface ProfileHeaderProps {
   handleProfileEdit: () => void;
   handleFollow: () => void;
 }
-
-const ProfileHeader = ({ userData, handleProfileEdit, handleFollow }: ProfileHeaderProps) => {
-  return (
-    <>
+const ProfileHeader = ({
+  userData,
+  handleProfileEdit,
+  handleFollow
+}: ProfileHeaderProps) => {
+  return <>
       {/* Hero Section with Cover Photo */}
       <div className="relative h-64 md:h-80 overflow-hidden">
-        <img 
-          src={userData.coverPhoto} 
-          alt="Cover" 
-          className="w-full h-full object-cover"
-        />
+        <img src={userData.coverPhoto} alt="Cover" className="w-full h-full object-cover" />
         <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
         
         <div className="absolute top-4 left-4">
@@ -53,11 +49,7 @@ const ProfileHeader = ({ userData, handleProfileEdit, handleFollow }: ProfileHea
           <div className="md:flex">
             <div className="relative mb-6 md:mb-0">
               <div className="w-28 h-28 rounded-full overflow-hidden border-4 border-white shadow-md relative">
-                <img 
-                  src={userData.avatar} 
-                  alt={userData.name}
-                  className="w-full h-full object-cover"
-                />
+                <img src={userData.avatar} alt={userData.name} className="w-full h-full object-none" />
                 <button className="absolute bottom-0 right-0 bg-purple-500 text-white p-1 rounded-full">
                   <Camera className="h-4 w-4" />
                 </button>
@@ -106,8 +98,6 @@ const ProfileHeader = ({ userData, handleProfileEdit, handleFollow }: ProfileHea
           </div>
         </div>
       </div>
-    </>
-  );
+    </>;
 };
-
 export default ProfileHeader;
