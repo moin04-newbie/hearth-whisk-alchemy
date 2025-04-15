@@ -1,7 +1,6 @@
 
 import { useState } from "react";
 import Navbar from "@/components/Navbar";
-import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
@@ -9,6 +8,14 @@ import { mockRecipes } from "@/lib/mockData";
 import { Calendar, Plus, ShoppingBag, Utensils, X } from "lucide-react";
 
 const DAYS_OF_WEEK = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"];
+
+// Background images for different meal types
+const mealTypeImages = {
+  breakfast: "https://images.unsplash.com/photo-1482049016688-2d3e1b311543?auto=format&fit=crop&w=300&q=80",
+  lunch: "https://images.unsplash.com/photo-1490645935967-10de6ba17061?auto=format&fit=crop&w=300&q=80",
+  dinner: "https://images.unsplash.com/photo-1414235077428-338989a2e8c0?auto=format&fit=crop&w=300&q=80",
+  snack: "https://images.unsplash.com/photo-1593001872095-7d5b3868eb2a?auto=format&fit=crop&w=300&q=80"
+};
 
 const MealPlanning = () => {
   const [selectedMeals, setSelectedMeals] = useState<Record<string, string[]>>({
@@ -45,8 +52,16 @@ const MealPlanning = () => {
       
       <main>
         {/* Header Section */}
-        <section className="bg-gradient-to-r from-green-500 to-teal-500 text-white py-16">
-          <div className="container mx-auto px-4 text-center">
+        <section className="bg-gradient-to-r from-green-500 to-teal-500 text-white py-16 relative overflow-hidden">
+          <div className="absolute inset-0 opacity-20">
+            <img 
+              src="https://images.unsplash.com/photo-1494859802809-d069c3b71a8a?auto=format&fit=crop&w=2000&q=80" 
+              alt="Meal planning" 
+              className="w-full h-full object-cover"
+            />
+          </div>
+          
+          <div className="container mx-auto px-4 text-center relative z-10">
             <h1 className="font-bold text-4xl md:text-5xl mb-4">Meal Planning</h1>
             <p className="text-lg max-w-2xl mx-auto mb-8">
               Plan your weekly meals and save time with our easy meal planning tool
@@ -63,8 +78,47 @@ const MealPlanning = () => {
           </div>
         </section>
         
-        {/* Meal Planning Tool */}
-        <section className="container mx-auto px-4 py-12">
+        {/* Visual Guide to Meal Planning */}
+        <section className="container mx-auto px-4 py-8">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-10">
+            <Card className="overflow-hidden">
+              <img 
+                src="https://images.unsplash.com/photo-1555939594-58d7cb561ad1?auto=format&fit=crop&w=500&q=80" 
+                alt="Step 1" 
+                className="w-full h-40 object-cover"
+              />
+              <CardContent className="p-4">
+                <h3 className="text-lg font-bold mb-2">1. Choose Your Recipes</h3>
+                <p className="text-sm text-gray-600">Browse our collection and select recipes that match your dietary needs and preferences.</p>
+              </CardContent>
+            </Card>
+            
+            <Card className="overflow-hidden">
+              <img 
+                src="https://images.unsplash.com/photo-1574629810360-7efbbe195018?auto=format&fit=crop&w=500&q=80" 
+                alt="Step 2" 
+                className="w-full h-40 object-cover"
+              />
+              <CardContent className="p-4">
+                <h3 className="text-lg font-bold mb-2">2. Plan Your Week</h3>
+                <p className="text-sm text-gray-600">Drag and drop meals into your weekly calendar to organize your cooking schedule.</p>
+              </CardContent>
+            </Card>
+            
+            <Card className="overflow-hidden">
+              <img 
+                src="https://images.unsplash.com/photo-1505253716362-afaea1d3d1af?auto=format&fit=crop&w=500&q=80" 
+                alt="Step 3" 
+                className="w-full h-40 object-cover"
+              />
+              <CardContent className="p-4">
+                <h3 className="text-lg font-bold mb-2">3. Get Shopping List</h3>
+                <p className="text-sm text-gray-600">Generate a complete shopping list based on your meal plan with just one click.</p>
+              </CardContent>
+            </Card>
+          </div>
+        
+          {/* Meal Planning Tool */}
           <Tabs defaultValue="planner" className="w-full">
             <TabsList className="w-full max-w-md mx-auto mb-8">
               <TabsTrigger value="planner" className="flex-1">Weekly Planner</TabsTrigger>
@@ -85,7 +139,16 @@ const MealPlanning = () => {
                           const recipe = getRecipeById(recipeId);
                           return recipe ? (
                             <div key={recipeId} className="mb-2 p-2 bg-gray-50 rounded-md relative group">
-                              <p className="text-sm font-medium pr-6 line-clamp-1">{recipe.title}</p>
+                              <div className="flex items-center">
+                                <div className="w-8 h-8 rounded-full overflow-hidden mr-2">
+                                  <img 
+                                    src={recipe.image} 
+                                    alt={recipe.title} 
+                                    className="w-full h-full object-cover"
+                                  />
+                                </div>
+                                <p className="text-sm font-medium pr-6 line-clamp-1">{recipe.title}</p>
+                              </div>
                               <button 
                                 onClick={() => removeMeal(day, recipeId)}
                                 className="absolute top-2 right-2 opacity-0 group-hover:opacity-100 transition-opacity"
@@ -153,8 +216,6 @@ const MealPlanning = () => {
           </Tabs>
         </section>
       </main>
-      
-      <Footer />
     </div>
   );
 };

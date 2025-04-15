@@ -103,7 +103,7 @@ const Index = () => {
             <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
               <Link to="/recipes?category=quick-meals" className="group">
                 <div className="aspect-square bg-white rounded-xl shadow-sm flex flex-col items-center justify-center p-4 transition-all duration-300 hover:shadow-md hover:-translate-y-1">
-                  <div className="text-3xl mb-2">⏱️</div>
+                  <img src="https://images.unsplash.com/photo-1488590528505-98d2b5aba04b?auto=format&fit=crop&w=300&q=80" alt="Quick Meals" className="w-16 h-16 object-cover rounded-full mb-4" />
                   <h3 className="font-bold text-base mb-1">Quick Meals</h3>
                   <p className="text-xs text-gray-500 text-center">Ready in under 30 mins</p>
                 </div>
@@ -111,7 +111,7 @@ const Index = () => {
               
               <Link to="/recipes?category=plant-based" className="group">
                 <div className="aspect-square bg-white rounded-xl shadow-sm flex flex-col items-center justify-center p-4 transition-all duration-300 hover:shadow-md hover:-translate-y-1">
-                  <div className="text-3xl mb-2">🥦</div>
+                  <img src="https://images.unsplash.com/photo-1465146344425-f00d5f5c8f07?auto=format&fit=crop&w=300&q=80" alt="Plant-Based" className="w-16 h-16 object-cover rounded-full mb-4" />
                   <h3 className="font-bold text-base mb-1">Plant-Based</h3>
                   <p className="text-xs text-gray-500 text-center">Delicious vegan options</p>
                 </div>
@@ -119,7 +119,7 @@ const Index = () => {
               
               <Link to="/recipes?category=snacks" className="group">
                 <div className="aspect-square bg-white rounded-xl shadow-sm flex flex-col items-center justify-center p-4 transition-all duration-300 hover:shadow-md hover:-translate-y-1">
-                  <div className="text-3xl mb-2">🍿</div>
+                  <img src="https://images.unsplash.com/photo-1618160702438-9b02ab6515c9?auto=format&fit=crop&w=300&q=80" alt="Snacks" className="w-16 h-16 object-cover rounded-full mb-4" />
                   <h3 className="font-bold text-base mb-1">Snacks</h3>
                   <p className="text-xs text-gray-500 text-center">Perfect for movie nights</p>
                 </div>
@@ -127,7 +127,7 @@ const Index = () => {
               
               <Link to="/recipes?category=desserts" className="group">
                 <div className="aspect-square bg-white rounded-xl shadow-sm flex flex-col items-center justify-center p-4 transition-all duration-300 hover:shadow-md hover:-translate-y-1">
-                  <div className="text-3xl mb-2">🍰</div>
+                  <img src="https://images.unsplash.com/photo-1616690710400-a16d146927c5?auto=format&fit=crop&w=300&q=80" alt="Desserts" className="w-16 h-16 object-cover rounded-full mb-4" />
                   <h3 className="font-bold text-base mb-1">Desserts</h3>
                   <p className="text-xs text-gray-500 text-center">Sweet treats to share</p>
                 </div>
@@ -179,34 +179,44 @@ const Index = () => {
         
         {/* Community Section - More Compact */}
         <section className="py-10 bg-purple-500 text-white">
-          <div className="container mx-auto px-4 text-center">
-            <h2 className="text-2xl font-bold mb-3">Join Our Food Community</h2>
-            <p className="text-lg mb-6 max-w-2xl mx-auto">
-              Share your creations, earn points, and connect with other food lovers.
-            </p>
-            
-            <div className="flex flex-wrap justify-center gap-3">
-              <Button size="lg" className="bg-white text-purple-500 hover:bg-white/90">
-                Create Account
-              </Button>
-              <Button size="lg" variant="outline" className="border-white text-white hover:bg-white/20">
-                Learn More
-              </Button>
+          <div className="container mx-auto px-4 md:flex items-center">
+            <div className="md:w-1/2 text-center md:text-left md:pr-8 mb-6 md:mb-0">
+              <h2 className="text-2xl font-bold mb-3">Join Our Food Community</h2>
+              <p className="text-lg mb-6">
+                Share your creations, earn points, and connect with other food lovers.
+              </p>
+              
+              <div className="flex flex-wrap justify-center md:justify-start gap-3">
+                <Button size="lg" className="bg-white text-purple-500 hover:bg-white/90">
+                  Create Account
+                </Button>
+                <Button size="lg" variant="outline" className="border-white text-white hover:bg-white/20">
+                  Learn More
+                </Button>
+              </div>
+              
+              <div className="mt-8 flex flex-wrap justify-center md:justify-start gap-4 md:gap-8">
+                <div className="text-center">
+                  <div className="text-3xl font-bold">10K+</div>
+                  <div className="text-white/80 text-sm">Active Members</div>
+                </div>
+                <div className="text-center">
+                  <div className="text-3xl font-bold">5K+</div>
+                  <div className="text-white/80 text-sm">Recipes Shared</div>
+                </div>
+                <div className="text-center">
+                  <div className="text-3xl font-bold">2K+</div>
+                  <div className="text-white/80 text-sm">Daily Visitors</div>
+                </div>
+              </div>
             </div>
             
-            <div className="mt-8 flex flex-wrap justify-center gap-4 md:gap-8">
-              <div className="text-center">
-                <div className="text-3xl font-bold">10K+</div>
-                <div className="text-white/80 text-sm">Active Members</div>
-              </div>
-              <div className="text-center">
-                <div className="text-3xl font-bold">5K+</div>
-                <div className="text-white/80 text-sm">Recipes Shared</div>
-              </div>
-              <div className="text-center">
-                <div className="text-3xl font-bold">2K+</div>
-                <div className="text-white/80 text-sm">Daily Visitors</div>
-              </div>
+            <div className="md:w-1/2">
+              <img 
+                src="https://images.unsplash.com/photo-1581092795360-fd1ca04f0952?auto=format&fit=crop&w=800&q=80" 
+                alt="Community cooking together" 
+                className="rounded-lg shadow-lg w-full h-auto"
+              />
             </div>
           </div>
         </section>

@@ -2,7 +2,6 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import Navbar from "@/components/Navbar";
-import Footer from "@/components/Footer";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
@@ -25,8 +24,16 @@ const Chefs = () => {
       
       <main>
         {/* Header Section */}
-        <section className="bg-gradient-to-r from-indigo-500 to-cyan-500 text-white py-16">
-          <div className="container mx-auto px-4 text-center">
+        <section className="bg-gradient-to-r from-indigo-500 to-cyan-500 text-white py-16 relative overflow-hidden">
+          <div className="absolute inset-0 opacity-20">
+            <img 
+              src="https://images.unsplash.com/photo-1517073132305-714998366135?auto=format&fit=crop&w=2000&q=80" 
+              alt="Chefs at work" 
+              className="w-full h-full object-cover"
+            />
+          </div>
+          
+          <div className="container mx-auto px-4 text-center relative z-10">
             <h1 className="font-bold text-4xl md:text-5xl mb-4">Meet Our Chefs</h1>
             <p className="text-lg max-w-2xl mx-auto mb-8">
               Connect with talented food creators from around the world
@@ -46,14 +53,37 @@ const Chefs = () => {
           </div>
         </section>
         
-        {/* Chefs Grid */}
-        <section className="container mx-auto px-4 py-12">
+        {/* Featured Chef */}
+        <section className="container mx-auto px-4 py-8">
+          <div className="relative rounded-xl overflow-hidden mb-8">
+            <img 
+              src="https://images.unsplash.com/photo-1556909211-36987daf7b4d?auto=format&fit=crop&w=1500&q=80"
+              alt="Featured chef"
+              className="w-full h-64 object-cover"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent flex flex-col justify-end p-6">
+              <span className="text-white/80 text-sm mb-1">Featured Chef</span>
+              <h2 className="text-white text-2xl font-bold mb-2">Master the Art of Cooking</h2>
+              <p className="text-white/90">Learn from the best chefs and elevate your culinary skills</p>
+            </div>
+          </div>
+        
+          {/* Chefs Grid */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {filteredChefs.length > 0 ? (
               filteredChefs.map(chef => (
                 <Link to={`/chef/${chef.id}`} key={chef.id} className="group">
                   <div className="bg-white rounded-xl shadow-md overflow-hidden transition-all duration-300 hover:shadow-lg hover:-translate-y-1">
                     <div className="h-40 bg-gradient-to-r from-pink-300 to-purple-400 relative">
+                      <img 
+                        src={chef.specialties && chef.specialties[0] === "Pastry" 
+                          ? "https://images.unsplash.com/photo-1597244211919-8a52ab2e40ea?auto=format&fit=crop&w=600&q=80" 
+                          : chef.specialties && chef.specialties[0] === "Seafood"
+                          ? "https://images.unsplash.com/photo-1534080307588-88e51e4891a1?auto=format&fit=crop&w=600&q=80"
+                          : "https://images.unsplash.com/photo-1566554273541-37a9ca77b91f?auto=format&fit=crop&w=600&q=80"}
+                        alt={chef.specialties && chef.specialties[0]}
+                        className="w-full h-full object-cover opacity-50"
+                      />
                       <div className="absolute -bottom-10 left-6">
                         <Avatar className="h-20 w-20 border-4 border-white">
                           <AvatarImage src={chef.avatar} alt={chef.name} />
@@ -93,8 +123,6 @@ const Chefs = () => {
           </div>
         </section>
       </main>
-      
-      <Footer />
     </div>
   );
 };
