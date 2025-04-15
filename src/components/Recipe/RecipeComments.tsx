@@ -32,9 +32,9 @@ const mockComments = [
   },
   {
     id: "2",
-    authorId: mockChefs[2].id,
-    author: mockChefs[2].name,
-    avatar: mockChefs[2].avatar,
+    authorId: mockChefs[2]?.id || "unknown",
+    author: mockChefs[2]?.name || "Anonymous Chef",
+    avatar: mockChefs[2]?.avatar || "/placeholder.svg",
     content: "I substituted the cream with coconut milk and it worked really well for a dairy-free version!",
     timestamp: "3 days ago",
     likes: 8,
