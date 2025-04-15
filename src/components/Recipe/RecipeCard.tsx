@@ -1,3 +1,4 @@
+
 import { Link } from 'react-router-dom';
 import { Clock, Utensils, ChefHat, Heart } from 'lucide-react';
 import { Badge } from '@/components/ui/badge';
@@ -19,6 +20,7 @@ const fallbackImages = [
   "https://images.unsplash.com/photo-1490645935967-10de6ba17061?auto=format&fit=crop&w=600&q=80",
   "https://images.unsplash.com/photo-1414235077428-338989a2e8c0?auto=format&fit=crop&w=600&q=80",
   "https://images.unsplash.com/photo-1512621776951-a57141f2eefd?auto=format&fit=crop&w=600&q=80",
+  "/lovable-uploads/13b0baec-7179-4812-9827-513f75d25753.png", // Add the cinnamon bun image
 ];
 
 // Collection of decorative overlay patterns
@@ -83,8 +85,10 @@ const RecipeCard = ({ recipe, featured = false }: RecipeCardProps) => {
           <div 
             className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent opacity-80"
             style={{ 
-              backgroundImage: `url(${overlayPattern}), linear-gradient(to top, rgba(0,0,0,0.7), transparent)`,
-              backgroundBlendMode: 'overlay'
+              backgroundImage: `url(/lovable-uploads/13b0baec-7179-4812-9827-513f75d25753.png), url(${overlayPattern}), linear-gradient(to top, rgba(0,0,0,0.7), transparent)`,
+              backgroundSize: 'cover, auto, auto',
+              backgroundPosition: 'center, center, center',
+              backgroundBlendMode: 'soft-light, overlay, normal'
             }}
           ></div>
           
