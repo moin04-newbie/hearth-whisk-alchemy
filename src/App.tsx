@@ -8,6 +8,9 @@ import Index from "./pages/Index";
 import RecipeDetail from "./pages/RecipeDetail";
 import ChefProfile from "./pages/ChefProfile";
 import NotFound from "./pages/NotFound";
+import Recipes from "./pages/Recipes";
+import Chefs from "./pages/Chefs";
+import MealPlanning from "./pages/MealPlanning";
 
 const queryClient = new QueryClient();
 
@@ -17,8 +20,11 @@ const App = () => (
       <TooltipProvider>
         <Routes>
           <Route path="/" element={<Index />} />
+          <Route path="/recipes" element={<Recipes />} />
           <Route path="/recipe/:id" element={<RecipeDetail />} />
+          <Route path="/chefs" element={<Chefs />} />
           <Route path="/chef/:id" element={<ChefProfile />} />
+          <Route path="/meal-planning" element={<MealPlanning />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
