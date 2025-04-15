@@ -1,7 +1,7 @@
 
 import { Link } from 'react-router-dom';
 import { useState } from 'react';
-import { ArrowLeft, Settings, Bookmark, Heart, Calendar, Trophy, Clock, Medal, Edit, Camera } from 'lucide-react';
+import { ArrowLeft, Settings, Bookmark, Heart, Calendar, Trophy, Clock, Medal, Edit, Camera, ChefHat } from 'lucide-react';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Button } from '@/components/ui/button';
 import { Progress } from '@/components/ui/progress';
@@ -9,7 +9,7 @@ import { Badge } from '@/components/ui/badge';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import RecipeCard from '@/components/Recipe/RecipeCard';
-import { mockRecipes, mockChefs } from '@/lib/mockData';
+import { mockRecipes } from '@/lib/mockData';
 import { useToast } from '@/hooks/use-toast';
 
 // Mock user data for the profile page
@@ -49,7 +49,7 @@ const UserProfile = () => {
   
   // Fetch saved recipes based on user data
   const savedRecipes = userData.savedRecipes.map(id => 
-    mockRecipes.find(recipe => recipe.id === id)
+    mockRecipes.find(recipe => recipe.id === id.toString())
   ).filter(Boolean);
   
   // Fetch recipes created by the user
@@ -194,7 +194,10 @@ const UserProfile = () => {
                 <span className="text-sm font-medium">Level {userData.stats.level}</span>
                 <span className="text-sm text-gray-500">{userData.stats.points}/{userData.stats.level * 100} points</span>
               </div>
-              <Progress value={userData.stats.points % (userData.stats.level * 100) / (userData.stats.level * 100) * 100} className="h-2 bg-gray-100" indicatorClassName="bg-purple-500" />
+              <Progress 
+                value={userData.stats.points % (userData.stats.level * 100) / (userData.stats.level * 100) * 100} 
+                className="h-2 bg-gray-100" 
+              />
             </div>
           </div>
           

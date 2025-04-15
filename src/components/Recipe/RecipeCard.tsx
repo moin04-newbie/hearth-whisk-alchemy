@@ -31,7 +31,9 @@ const RecipeCard = ({ recipe, featured = false }: RecipeCardProps) => {
   }
 
   // Use recipe image if available, otherwise use a fallback based on recipe ID
-  const recipeImage = recipe.image || fallbackImages[recipe.id % fallbackImages.length];
+  // Convert id to number before using modulo operation, ensuring it's a valid number
+  const recipeIndex = typeof recipe.id === 'string' ? parseInt(recipe.id.replace(/\D/g, '')) % fallbackImages.length : 0;
+  const recipeImage = recipe.image || fallbackImages[recipeIndex];
 
   // Generate a badge style and text based on recipe properties
   const getBadgeDetails = () => {
