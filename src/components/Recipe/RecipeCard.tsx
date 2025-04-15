@@ -19,15 +19,18 @@ const RecipeCard = ({ recipe, featured = false }: RecipeCardProps) => {
 
   return (
     <Link to={`/recipe/${recipe.id}`}>
-      <Card className={`recipe-card h-full ${featured ? 'md:flex' : ''}`}>
+      <Card className={`recipe-card h-full ${featured ? 'md:flex' : ''} overflow-hidden`}>
         <div className={`${featured ? 'md:w-2/5' : 'w-full'} relative overflow-hidden`}>
           <img 
             src={recipe.image} 
             alt={recipe.title} 
-            className={`w-full aspect-[4/3] object-cover ${featured ? 'md:h-full md:aspect-auto' : ''}`}
+            className={`w-full object-cover transition-transform duration-500 hover:scale-105 ${
+              featured ? 'md:h-full md:aspect-auto' : 'aspect-[4/3]'
+            }`}
           />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent opacity-60"></div>
           {recipe.creator && recipe.creator.badges && recipe.creator.badges.length > 0 && (
-            <Badge className="absolute top-2 right-2 bg-sage text-white">
+            <Badge className="absolute top-2 right-2 bg-purple-500 text-white">
               {recipe.creator.badges[0]}
             </Badge>
           )}
@@ -64,7 +67,7 @@ const RecipeCard = ({ recipe, featured = false }: RecipeCardProps) => {
                 <img 
                   src={recipe.creator.avatar} 
                   alt={recipe.creator.name}
-                  className="h-6 w-6 rounded-full mr-2"
+                  className="h-6 w-6 rounded-full mr-2 object-cover border border-gray-100"
                 />
                 <span className="text-xs">{recipe.creator.name}</span>
               </div>
