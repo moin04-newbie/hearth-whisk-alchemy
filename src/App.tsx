@@ -11,6 +11,7 @@ import NotFound from "./pages/NotFound";
 import Recipes from "./pages/Recipes";
 import Chefs from "./pages/Chefs";
 import MealPlanning from "./pages/MealPlanning";
+import UserProfile from "./pages/UserProfile";
 
 // Create a single queryClient instance to be used throughout the app
 const queryClient = new QueryClient();
@@ -26,6 +27,7 @@ const App = () => (
           <Route path="/chefs" element={<Chefs />} />
           <Route path="/chef/:id" element={<ChefProfile />} />
           <Route path="/meal-planning" element={<MealPlanning />} />
+          <Route path="/profile" element={<UserProfile />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
