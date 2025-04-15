@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { ArrowRight, ChevronRight, Heart, MessageCircle, Trophy } from "lucide-react";
@@ -7,11 +6,11 @@ import Navbar from "@/components/Navbar";
 import RecipeCard from "@/components/Recipe/RecipeCard";
 import { mockRecipes, mockChefs, getCurrentSeason } from "@/lib/mockData";
 import { useRecipeTasks } from "@/lib/taskUtils";
-
 const Index = () => {
   const [trendingRecipes, setTrendingRecipes] = useState(mockRecipes.slice(0, 3));
-  const { points } = useRecipeTasks();
-  
+  const {
+    points
+  } = useRecipeTasks();
   const featuredRecipe = mockRecipes[0];
   const currentSeason = getCurrentSeason();
   const seasonNames: Record<string, string> = {
@@ -20,9 +19,7 @@ const Index = () => {
     'summer': 'Summer',
     'fall': 'Autumn'
   };
-  
-  return (
-    <div className="min-h-screen bg-white">
+  return <div className="min-h-screen bg-white">
       <Navbar />
       
       <main>
@@ -30,13 +27,7 @@ const Index = () => {
         <section className="relative h-[70vh] flex items-center">
           <div className="absolute inset-0 bg-black/40 z-10"></div>
           <div className="absolute inset-0 bg-gradient-to-b from-transparent to-black/80 z-10"></div>
-          <video 
-            autoPlay 
-            muted 
-            loop 
-            playsInline
-            className="absolute inset-0 w-full h-full object-cover"
-          >
+          <video autoPlay muted loop playsInline className="absolute inset-0 w-full h-full object-cover">
             <source src="https://assets.mixkit.co/videos/preview/mixkit-cooking-with-wooden-utensils-30593-large.mp4" type="video/mp4" />
           </video>
           
@@ -75,8 +66,7 @@ const Index = () => {
             </div>
             
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-              {trendingRecipes.map(recipe => (
-                <div key={recipe.id} className="group">
+              {trendingRecipes.map(recipe => <div key={recipe.id} className="group">
                   <RecipeCard recipe={recipe} />
                   <div className="mt-2 flex justify-between items-center px-1">
                     <div className="flex items-center gap-3">
@@ -89,8 +79,7 @@ const Index = () => {
                     </div>
                     <span className="text-xs text-gray-500">{Math.floor(Math.random() * 1000)} shares</span>
                   </div>
-                </div>
-              ))}
+                </div>)}
             </div>
           </div>
         </section>
@@ -147,15 +136,10 @@ const Index = () => {
             </div>
             
             <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
-              {mockChefs.slice(0, 4).map(chef => (
-                <Link to={`/chef/${chef.id}`} key={chef.id} className="group">
+              {mockChefs.slice(0, 4).map(chef => <Link to={`/chef/${chef.id}`} key={chef.id} className="group">
                   <div className="bg-white rounded-xl overflow-hidden transition-all duration-300 hover:shadow-lg hover:-translate-y-1">
                     <div className="aspect-square relative">
-                      <img 
-                        src={chef.avatar} 
-                        alt={chef.name}
-                        className="w-full h-full object-cover"
-                      />
+                      <img src={chef.avatar} alt={chef.name} className="w-full h-full object-cover" />
                       <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent flex items-end">
                         <div className="p-3 text-white">
                           <h3 className="font-bold text-base">{chef.name}</h3>
@@ -171,8 +155,7 @@ const Index = () => {
                       </div>
                     </div>
                   </div>
-                </Link>
-              ))}
+                </Link>)}
             </div>
           </div>
         </section>
@@ -190,7 +173,7 @@ const Index = () => {
                 <Button size="lg" className="bg-white text-purple-500 hover:bg-white/90">
                   Create Account
                 </Button>
-                <Button size="lg" variant="outline" className="border-white text-white hover:bg-white/20">
+                <Button size="lg" variant="outline" className="border-white hover:bg-white/20 text-gray-950">
                   Learn More
                 </Button>
               </div>
@@ -212,17 +195,11 @@ const Index = () => {
             </div>
             
             <div className="md:w-1/2">
-              <img 
-                src="https://images.unsplash.com/photo-1581092795360-fd1ca04f0952?auto=format&fit=crop&w=800&q=80" 
-                alt="Community cooking together" 
-                className="rounded-lg shadow-lg w-full h-auto"
-              />
+              <img src="https://images.unsplash.com/photo-1581092795360-fd1ca04f0952?auto=format&fit=crop&w=800&q=80" alt="Community cooking together" className="rounded-lg shadow-lg w-full h-auto" />
             </div>
           </div>
         </section>
       </main>
-    </div>
-  );
+    </div>;
 };
-
 export default Index;
